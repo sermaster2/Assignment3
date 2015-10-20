@@ -16,48 +16,46 @@ public class Assignment3 {
 
         File file = new File(playerNameFirst);
         if (file.exists()) { 
-            boolean exis = true;
-
             Scanner inputFile = new Scanner(file);
             while (inputFile.hasNext()) {
                 String data = inputFile.nextLine();
                 System.out.println(data);
             }
             inputFile.close();
-          }
+        }
         if (!file.exists())
 
-        System.out.println("Enter your last name: ");
-        playerNameLast = sc.nextLine();
+            System.out.println("Enter your last name: ");
+            playerNameLast = sc.nextLine();
 
-        Dice dice = new Dice();
+            Dice dice = new Dice();
 
-        Player player = new Player(playerNameFirst + " " + playerNameLast);
-        boolean good = false;
+            Player player = new Player(playerNameFirst + " " + playerNameLast);
+            boolean good = false;
 
-        player.newPerson();
+            player.newPerson();
 
         do{
-        System.out.println("Would you like to play a round (y/n) > ");
-        decision = sc.nextLine();
-        switch (decision){
-        case "y":
-                    player.atZero();
-                    player.addRound();
-                    System.out.println("---------------------------------");
-                    System.out.printf("Now playing round %d.\n", player.getRound());
+            System.out.println("Would you like to play a round (y/n) > ");
+            decision = sc.nextLine();
+            switch (decision){
+            case "y":
+                player.atZero();
+                player.addRound();
+                System.out.println("---------------------------------");
+                System.out.printf("Now playing round %d.\n", player.getRound());
 
-                    player.makeBet();
+                player.makeBet();
 
-                    dice.rollDice();
+                dice.rollDice();
 
-                    player.makeGuess();
+                player.makeGuess();
 
-                    roundResults(dice, player);
-            break;
-        case "n":
-            good = true;
-            break;
+                roundResults(dice, player);
+                break;
+            case "n":
+                good = true;
+                break;
             }
         }
         while(!good);
