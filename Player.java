@@ -1,7 +1,12 @@
+//Sercan Cagatay, CS0401, 3pm, Professor Laboon
+//Player, Contains player data and first time player methods
+
 import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
 public class Player {
-    private String name;
+    private String name; //variables initialized
     private String guess;
     private double cash;
     private double bet;
@@ -10,14 +15,15 @@ public class Player {
     private int round = 0;
     private int won = 0;
 
-    public Player(String playerName) {
+
+    public Player(String playerName) { //player data
         name = playerName;
         guess = " ";
         cash = 0;
         round = getRound();
     }
 
-    public void initialCash() {
+    public void initialCash() { //Asks for initial cash ammount for first time players
         Scanner b = new Scanner(System.in);
         boolean good = false;
         do{
@@ -29,7 +35,7 @@ public class Player {
         while(!good);
     }
 
-    public void makeBet() {
+    public void makeBet() { //Allows for players to make a bet
         Scanner b = new Scanner(System.in);
         boolean good = false;
         do{
@@ -41,7 +47,7 @@ public class Player {
         while(!good);
     }
 
-    public void makeGuess() {
+    public void makeGuess() { //Allows for players to make a guess
         Scanner sc = new Scanner(System.in);
         boolean good = false;
         do{
@@ -77,7 +83,7 @@ public class Player {
         while(!good);
     }
 
-    public void atZero() {
+    public void atZero() { //Checks for 0 on money balances
         if (cash == 0) {
         System.out.println("Sorry, you're out of money.");
         System.out.println("Thank you for playing Over and Under!");
@@ -85,7 +91,7 @@ public class Player {
         }
     }
 
-    public void newPerson() {
+    public void newPerson() { //Executes if new player is found
         initialCash();
         System.out.println("Welcome to Over and Under new player!");
         System.out.println("Your name: " + getName());
@@ -93,8 +99,17 @@ public class Player {
         System.out.println(" ");
     }
 
-    public void addCash() {
+    public void addCash() { //These methods calculate the cash won or lost and sets/returns variables to the main program
         cash = cash + (bet * 2);
+    }
+
+    public void addSeven() {
+        cash = cash + (bet * 4);
+    }
+
+    public double getAddSeven() {
+        bet = bet + (bet * 4);
+        return bet;
     }
 
     public void subtractCash() {
@@ -103,6 +118,10 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String n) {
+        name = n;
     }
 
     public String getGuess() {
@@ -130,12 +149,24 @@ public class Player {
         return won;
     }
 
+    public void setWon(int w) {
+        won = w;
+    }
+
     public int getRound() {
         return round;
     }
 
+    public void setRound(int r) {
+        round = r;
+    }
+
     public double getCash() {
         return cash;
+    }
+
+    public void setCash(double c) {
+        cash = c;
     }
 }
         
